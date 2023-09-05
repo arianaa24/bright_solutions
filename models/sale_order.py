@@ -7,4 +7,4 @@ class SaleOrderLine(models.Model):
     x_studio_das = fields.Integer('Días')
     @api.onchange("x_studio_das", "precio_unitario_dias", "product_uom_qty")
     def _onchange_price(self):
-        self.price_unit = self.product_uom_qty * self.x_studio_das * self.precio_unitario_dias
+        self.price_unit = self.x_studio_das * self.precio_unitario_dias
