@@ -10,6 +10,13 @@
                     <field name="dias"/>
                     <field name="precio_unitario_dias"/>
                 </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="before">
+                    <field name="costo_total"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="vc"/>
+                    <field name="margen" widget="percentage"/>
+                </xpath>
             </field>
         </record>
     </data>
