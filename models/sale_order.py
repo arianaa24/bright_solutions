@@ -21,4 +21,5 @@ class SaleOrderLine(models.Model):
     def _onchange_product_id(self):
         self.costo_total = self.product_uom_qty * self.dias * self.x_studio_costo
         self.vc = self.price_subtotal - self.costo_total
-        self.margen = self.vc / self.price_subtotal
+        if self.price_subtotal:
+            self.margen = self.vc / self.price_subtotal
