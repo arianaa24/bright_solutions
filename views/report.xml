@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="bright_solutions_account_payment1"
+            string="Voucher 01"
+            model="account.payment"
+            report_type="qweb-pdf"
+            file="bright_solutions.reporte_account_payment1"
+            name="bright_solutions.reporte_account_payment1"
+        />
+
+        <report
+            id="bright_solutions_account_payment2"
+            string="Voucher 02"
+            model="account.payment"
+            report_type="qweb-pdf"
+            file="bright_solutions.reporte_account_payment2"
+            name="bright_solutions.reporte_account_payment2"
+        />
+
+        <report
+            id="bright_solutions_account_payment3"
+            string="Voucher 03"
+            model="account.payment"
+            report_type="qweb-pdf"
+            file="bright_solutions.reporte_account_payment3"
+            name="bright_solutions.reporte_account_payment3"
+        />
+
+    </data>
+</odoo>
