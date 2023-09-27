@@ -4,7 +4,7 @@
 
         <report
             id="bright_solutions_account_payment1"
-            string="Voucher 01"
+            string="BI CONTINUO Q"
             model="account.payment"
             report_type="qweb-pdf"
             file="bright_solutions.reporte_account_payment1"
@@ -13,7 +13,7 @@
 
         <report
             id="bright_solutions_account_payment2"
-            string="Voucher 02"
+            string="BI $"
             model="account.payment"
             report_type="qweb-pdf"
             file="bright_solutions.reporte_account_payment2"
@@ -22,7 +22,7 @@
 
         <report
             id="bright_solutions_account_payment3"
-            string="Voucher 03"
+            string="BAC $"
             model="account.payment"
             report_type="qweb-pdf"
             file="bright_solutions.reporte_account_payment3"
