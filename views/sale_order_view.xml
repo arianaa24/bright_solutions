@@ -11,11 +11,11 @@
                     <field name="precio_unitario_dias"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="before">
-                    <field name="costo_total" readonly="1"/>
+                    <field name="costo_total" readonly="1" force_save="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
-                    <field name="vc"/>
-                    <field name="margen" widget="percentage"/>
+                    <field name="vc" readonly="1" force_save="1"/>
+                    <field name="margen" widget="percentage" readonly="1" force_save="1"/>
                 </xpath>
             </field>
         </record>
