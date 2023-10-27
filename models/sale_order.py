@@ -1,5 +1,16 @@
 from odoo import api, fields, models, _
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+    
+    margen_total = fields.Float(string="Margen Total %")
+
+    @api.onchange("order_line")
+    def onchange_margen_total(self):
+        total_vc = sum(line.vc for line in self.order_line)
+        total_price_subtotal = sum(line.price_subtotal for line in self.order_line)
+        self.margen_total = total_vc / total_price_subtotal
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
