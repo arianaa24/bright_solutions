@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
     def onchange_margen_total(self):
         total_vc = sum(line.vc for line in self.order_line)
         total_price_subtotal = sum(line.price_subtotal for line in self.order_line)
-        self.margen_total = total_vc / total_price_subtotal
+        self.margen_total = total_vc / total_price_subtotal if total_price_subtotal != 0 else 0
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
