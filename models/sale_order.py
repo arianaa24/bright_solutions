@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     dias = fields.Integer(string="Días")
-    precio_unitario_dias = fields.Float(string="Precio unitario por día")
+    precio_unitario_dias = fields.Float(string="Precio unitario por día", digits=(12,2))
     costo_total = fields.Monetary(string="Costo Total")
     vc = fields.Monetary(string="VC")
     margen = fields.Float(string="Margen %")
