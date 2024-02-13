@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
     margen = fields.Float(string="Margen %")
 
     @api.onchange("product_id")
-    def _onchange_product_id(self):
+    def _onchange_product(self):
         self.precio_unitario_dias = self.product_id.list_price
 
     @api.onchange("dias", "precio_unitario_dias","product_uom_qty")
@@ -30,7 +30,8 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("x_studio_costo","precio_unitario_dias", "product_uom_qty", "dias")
     def _onchange_product_id(self):
-        self.costo_total = self.product_uom_qty * self.dias * self.x_studio_costo
-        self.vc = self.price_subtotal - self.costo_total
-        if self.price_subtotal:
-            self.margen = self.vc / self.price_subtotal
+        for rec in self:
+            rec.costo_total = rec.product_uom_qty * rec.dias * rec.x_studio_costo
+            rec.vc = rec.price_subtotal - rec.costo_total
+            if rec.price_subtotal:
+                rec.margen = rec.vc / rec.price_subtotal
