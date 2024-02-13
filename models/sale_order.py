@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
     margen = fields.Float(string="Margen %")
 
     @api.onchange("product_id")
-    def _onchange_product_id(self):
+    def _onchange_product(self):
         self.precio_unitario_dias = self.product_id.list_price
 
     @api.onchange("dias", "precio_unitario_dias","product_uom_qty")
