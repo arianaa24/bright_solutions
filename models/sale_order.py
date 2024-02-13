@@ -30,8 +30,8 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("x_studio_costo","precio_unitario_dias", "product_uom_qty", "dias")
     def _onchange_product_id(self):
-        for rec in self:
-            rec.costo_total = rec.product_uom_qty * rec.dias * rec.x_studio_costo
-            rec.vc = rec.price_subtotal - rec.costo_total
-            if rec.price_subtotal:
-                rec.margen = rec.vc / rec.price_subtotal
+        for record in self:
+            record.costo_total = record.product_uom_qty * record.dias * record.x_studio_costo
+            record.vc = record.price_subtotal - record.costo_total
+            if record.price_subtotal:
+                record.margen = record.vc / record.price_subtotal
