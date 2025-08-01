@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
         self.price_unit = self.dias * self.precio_unitario_dias
 
     @api.onchange("x_studio_costo","precio_unitario_dias", "product_uom_qty", "dias")
-    def _onchange_product_id(self):
+    def _onchange_product_brighsolutions(self):
         for record in self:
             record.costo_total = record.product_uom_qty * record.dias * record.x_studio_costo
             record.vc = record.price_subtotal - record.costo_total
