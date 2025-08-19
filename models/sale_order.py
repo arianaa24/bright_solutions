@@ -4,8 +4,6 @@ class SaleOrder(models.Model):
     
     margen_total = fields.Float(string="Margen Total %")
 
-
-
     @api.onchange("order_line")
     def onchange_margen_total(self):
         total_vc = sum(line.vc for line in self.order_line)
