@@ -4,12 +4,15 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     
     margen_total = fields.Float(string="Margen Total %")
+    margen_final = fields.Float(string="Margen Final")
 
     @api.onchange("order_line")
     def onchange_margen_total(self):
         total_vc = sum(line.vc for line in self.order_line)
         total_price_subtotal = sum(line.price_subtotal for line in self.order_line)
+        total_monto_ejecutado = sum(line.monto_ejecutado for line in self.order_line)
         self.margen_total = total_vc / total_price_subtotal if total_price_subtotal != 0 else 0
+        self.margen_final = total_price_subtotal - total_monto_ejecutado
     
     def btn_calcular_monto_ejecutado(self):
         for so_line in self.order_line:
