@@ -1,15 +1,21 @@
 from odoo import api, fields, models, _
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     
     margen_total = fields.Float(string="Margen Total %")
+
+
 
     @api.onchange("order_line")
     def onchange_margen_total(self):
         total_vc = sum(line.vc for line in self.order_line)
         total_price_subtotal = sum(line.price_subtotal for line in self.order_line)
         self.margen_total = total_vc / total_price_subtotal if total_price_subtotal != 0 else 0
+    
+    def btn_calcular_monto_ejecutado(self):
+        for so_line in self.order_line:
+            purchase_order_lines = self.env['purchase.order.line'].search([('order_id.sale_order_id.id','=',self.id), ('state','=','purchase'), ('product_id.id','=',so_line.product_id.id)])
+            so_line.monto_ejecutado = sum(purchase_order_lines.mapped('price_subtotal'))
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -19,6 +25,7 @@ class SaleOrderLine(models.Model):
     costo_total = fields.Monetary(string="Costo Total")
     vc = fields.Monetary(string="VC")
     margen = fields.Float(string="Margen %")
+    monto_ejecutado = fields.Float(string="Monto Ejecutado")
 
     @api.onchange("product_id")
     def _onchange_product(self):
