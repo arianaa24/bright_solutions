@@ -6,8 +6,12 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Calcular monto ejecutado" name="btn_calcular_monto_ejecutado" type="object" class="oe_highlight"/>
+                </header>
                 <field name="payment_term_id" position="after">
                     <field name="margen_total" widget="percentage" readonly="1" force_save="1"/>
+                    <field name="margen_final" readonly="1" force_save="1"/>
                 </field>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
                     <field name="dias"/>
@@ -19,6 +23,7 @@
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
                     <field name="vc" readonly="1" force_save="1"/>
                     <field name="margen" widget="percentage" readonly="1" force_save="1"/>
+                    <field name="monto_ejecutado" readonly="1" force_save="1"/>
                 </xpath>
             </field>
         </record>
