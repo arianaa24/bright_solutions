@@ -4,7 +4,6 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     
     margen_total = fields.Float(string="Margen Total %")
-    margen_final = fields.Float(string="Margen Final")
 
     @api.onchange("order_line")
     def onchange_margen_total(self):
